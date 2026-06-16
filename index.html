@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Deccan Kitchen – Authentic South Indian Cuisine</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:   #0a0a0a;
+      --charcoal:#141414;
+      --panel:   #1a1810;
+      --gold:    #c9a84c;
+      --gold-lt: #e2c97e;
+      --cream:   #f5f0e8;
+      --muted:   #888070;
+      --white:   #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--cream);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      transition: opacity 0.2s, color 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 60%, rgba(201,168,76,0.08) 0%, transparent 70%),
+        linear-gradient(180deg, #0a0a0a 0%, #1a1810 50%, #0a0a0a 100%);
+    }
+    .hero-ornament {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 600px; height: 600px;
+      border: 1px solid rgba(201,168,76,0.06);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-ornament::before {
+      content: '';
+      position: absolute; inset: 40px;
+      border: 1px solid rgba(201,168,76,0.06);
+      border-radius: 50%;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 700px; }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 9vw, 7rem);
+      font-weight: 600;
+      line-height: 0.95;
+      color: var(--white);
+      margin-bottom: 0.3em;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero-sub {
+      font-size: 0.95rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 2.5rem;
+      margin-top: 1rem;
+    }
+    .hero-cta {
+      display: inline-block;
+      padding: 0.85rem 2.5rem;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      transition: background 0.25s, color 0.25s;
+    }
+    .hero-cta:hover { background: var(--gold); color: var(--black); }
+
+    /* ── SECTION BASE ── */
+    section { padding: 6rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+      line-height: 1.15;
+    }
+    .gold-rule {
+      width: 48px; height: 1px;
+      background: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    /* ── ABOUT STRIP ── */
+    #about {
+      background: var(--panel);
+      border-top: 1px solid rgba(201,168,76,0.12);
+      border-bottom: 1px solid rgba(201,168,76,0.12);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .about-text p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .stat {
+      border-left: 1px solid rgba(201,168,76,0.3);
+      padding-left: 1.2rem;
+    }
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+
+    /* ── MENU ── */
+    #menu { background: var(--black); }
+    .menu-tabs {
+      display: flex; gap: 0;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+    .tab-btn {
+      background: none; border: none; cursor: pointer;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.8rem 1.8rem;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .tab-btn.active, .tab-btn:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5px;
+      background: rgba(201,168,76,0.08);
+    }
+    .menu-item {
+      background: var(--black);
+      padding: 1.8rem;
+      transition: background 0.2s;
+    }
+    .menu-item:hover { background: var(--panel); }
+    .menu-item-header {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 0.5rem;
+    }
+    .menu-item-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+    .menu-item-price {
+      font-size: 0.85rem;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+    }
+    .menu-item-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .menu-badge {
+      display: inline-block;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(201,168,76,0.4);
+      padding: 0.15rem 0.5rem;
+      margin-bottom: 0.6rem;
+    }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--panel); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+    }
+    .contact-info-item {
+      margin-bottom: 2rem;
+    }
+    .contact-info-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    .contact-info-value {
+      font-size: 0.95rem;
+      color: var(--cream);
+    }
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .form-group input,
+    .form-group textarea {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,168,76,0.2);
+      color: var(--cream);
+      padding: 0.75rem 1rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--gold); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-submit {
+      display: inline-block;
+      padding: 0.85rem 2.5rem;
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      cursor: pointer;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: background 0.2s;
+      align-self: flex-start;
+    }
+    .form-submit:hover { background: var(--gold-lt); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      border-top: 1px solid rgba(201,168,76,0.12);
+      padding: 2.5rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+    }
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.2rem; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#home">Deccan Kitchen</a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-ornament"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Authentic South Indian Cuisine · Sydney</span>
+    <h1 class="hero-title">Deccan<br><em>Kitchen</em></h1>
+    <p class="hero-sub">Where the flavours of the Deccan Plateau come alive</p>
+    <a href="#menu" class="hero-cta">Explore Our Menu</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="section-eyebrow">Our Story</p>
+        <h2 class="section-title">A Taste of the Deccan</h2>
+        <div class="gold-rule"></div>
+        <p>Deccan Kitchen brings the rich culinary heritage of South India to Sydney. Our dishes are crafted with traditional recipes passed down through generations, using authentic spices and fresh ingredients.</p>
+        <p>From crispy dosas to aromatic biryanis, every dish tells a story of the vibrant culture and flavours of the Deccan Plateau.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Authentic Recipes</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">Fresh</div>
+          <div class="stat-label">Daily Ingredients</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">Veg &</div>
+          <div class="stat-label">Non-Veg Options</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">Dine</div>
+          <div class="stat-label">In & Takeaway</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu">
+  <div class="container">
+    <p class="section-eyebrow">What We Serve</p>
+    <h2 class="section-title">Our Menu</h2>
+    <div class="gold-rule"></div>
+
+    <div class="menu-tabs">
+      <button class="tab-btn active" onclick="showTab('starters')">Starters</button>
+      <button class="tab-btn" onclick="showTab('mains')">Mains</button>
+      <button class="tab-btn" onclick="showTab('breads')">Breads & Rice</button>
+      <button class="tab-btn" onclick="showTab('drinks')">Drinks</button>
+    </div>
+
+    <!-- Starters -->
+    <div class="tab-panel active" id="starters">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <span class="menu-badge">Vegetarian</span>
+          <div class="menu-item-header">
+            <span class="menu-item-name">Masala Vada</span>
+            <span class="menu-item-price">$9</span>
+          </div>
+          <p class="menu-item-desc">Crispy lentil fritters seasoned with green chilli, curry leaves and ginger.</p>
+        </div>
+        <div class="menu-item">
+          <span class="menu-badge">Vegetarian</span>
+          <div class="menu-item-header">
+            <span class="menu-item-name">Idli Sambar</span>
+            <span class="menu-item-price">$10</span>
+          </div>
+          <p class="menu-item-desc">Steamed rice cakes served with tangy lentil soup and coconut chutney.</p>
+        </div>
+        <div class="menu-item">
+          <span class="menu-badge">Chef's Pick</span>
+          <div class="menu-item-header">
+            <span class="menu-item-name">Chicken 65</span>
+            <span class="menu-item-price">$16</span>
+          </div>
+          <p class="menu-item-desc">Deep-fried spiced chicken marinated in yoghurt, red chilli and curry leaves.</p>
+        </div>
+        <div class="menu-item">
+          <span class="menu-badge">Vegetarian</span>
+          <div class="menu-item-header">
+            <span class="menu-item-name">Paneer Tikka</span>
+            <span class="menu-item-price">$15</span>
+          </div>
+          <p class="menu-item-desc">Grilled cottage cheese marinated in spiced yoghurt with capsicum and onion.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mains -->
+    <div class="tab-panel" id="mains">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <span class="menu-badge">Chef's Pick</span>
+          <div class="menu-item-header">
+            <span class="menu-item-name">Masala Dosa</span>
+            <span class="menu-item-price">$18</span>
+          </div>
+          <p class="menu-item-desc">Crispy rice crepe filled with spiced potato masala, served with sambar and chutneys.</p>
+        </div>
+        <div class="menu-item">
+          <span class="menu-badge">Signature</span>
+          <div class="menu-item-header">
+            <span class="menu-item-name">Hyderabadi Biryani</span>
+            <span class="menu-item-price">$26</span>
+          </div>
+          <p class="menu-item-desc">Slow-cooked basmati rice layered with aromatic spices and tender chicken or mutton.</p>
+        </div>
+        <div class="menu-item">
+          <span class="menu-badge">Vegetarian</span>
+          <div class="menu-item-header">
+            <span class="menu-item-name">Sambar Rice</span>
+            <span class="menu-item-price">$16</span>
+          </div>
+          <p class="menu-item-desc">Comfort rice cooked with lentils, vegetables and tamarind-spiced sambar.</p>
+        </div>
+        <div class="menu-item">
+          <span class="menu-badge">Popular</span>
+          <div class="menu-item-header">
+            <span class="menu-item-name">Chettinad Curry</span>
+            <span class="menu-item-price">$24</span>
+          </div>
+          <p class="menu-item-desc">Bold, aromatic curry from Tamil Nadu with kalpasi, marathi mokku and fresh coconut.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Breads & Rice -->
+    <div class="tab-panel" id="breads">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Appam</span>
+            <span class="menu-item-price">$6</span>
+          </div>
+          <p class="menu-item-desc">Soft, lacy rice hoppers with a crispy edge, perfect with stew or curry.</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Parotta</span>
+            <span class="menu-item-price">$5</span>
+          </div>
+          <p class="menu-item-desc">Flaky, layered flatbread cooked on a griddle — a South Indian classic.</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Steamed Rice</span>
+            <span class="menu-item-price">$4</span>
+          </div>
+          <p class="menu-item-desc">Plain steamed basmati rice, the perfect companion to any curry.</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Coconut Rice</span>
+            <span class="menu-item-price">$8</span>
+          </div>
+          <p class="menu-item-desc">Fragrant rice tossed with fresh coconut, mustard seeds and curry leaves.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Drinks -->
+    <div class="tab-panel" id="drinks">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <span class="menu-badge">Popular</span>
+          <div class="menu-item-header">
+            <span class="menu-item-name">Mango Lassi</span>
+            <span class="menu-item-price">$7</span>
+          </div>
+          <p class="menu-item-desc">Chilled yoghurt drink blended with sweet Alphonso mango pulp.</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Filter Coffee</span>
+            <span class="menu-item-price">$5</span>
+          </div>
+          <p class="menu-item-desc">Traditional South Indian coffee brewed through a metal filter, served frothy.</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Masala Chai</span>
+            <span class="menu-item-price">$5</span>
+          </div>
+          <p class="menu-item-desc">Spiced milk tea with cardamom, ginger and cinnamon.</p>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Fresh Lime Soda</span>
+            <span class="menu-item-price">$6</span>
+          </div>
+          <p class="menu-item-desc">Refreshing squeezed lime with soda, salt or sugar — your choice.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <p class="section-eyebrow">Find Us</p>
+        <h2 class="section-title">Visit Deccan Kitchen</h2>
+        <div class="gold-rule"></div>
+
+        <div class="contact-info-item">
+          <p class="contact-info-label">Address</p>
+          <p class="contact-info-value">Coming Soon — Sydney, NSW</p>
+        </div>
+        <div class="contact-info-item">
+          <p class="contact-info-label">Email</p>
+          <p class="contact-info-value">info@deccankitchen.com.au</p>
+        </div>
+        <div class="contact-info-item">
+          <p class="contact-info-label">Hours</p>
+          <p class="contact-info-value">
+            Tuesday – Sunday<br>
+            Lunch: 11:30am – 2:30pm<br>
+            Dinner: 5:30pm – 10:00pm
+          </p>
+        </div>
+        <div class="contact-info-item">
+          <p class="contact-info-label">Reservations</p>
+          <p class="contact-info-value">Walk-ins welcome · Bookings recommended on weekends</p>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-eyebrow">Get In Touch</p>
+        <h2 class="section-title">Send a Message</h2>
+        <div class="gold-rule"></div>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="John Smith" required />
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="john@email.com" required />
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea placeholder="Reservation enquiry, feedback or just say hello..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Deccan Kitchen</span>
+  <span class="footer-copy">© 2026 Deccan Kitchen · WA Unified Group Pty Ltd · Sydney, NSW</span>
+</footer>
+
+<script>
+  function showTab(id) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.target.classList.add('active');
+  }
+  function handleSubmit(e) {
+    e.preventDefault();
+    alert('Thank you! We will be in touch soon.');
+    e.target.reset();
+  }
+</script>
+
+</body>
+</html>

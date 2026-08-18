@@ -25,7 +25,7 @@
     "@type": "Restaurant",
     "name": "Deccan Kitchen",
     "url": "https://www.deccankitchen.com.au",
-    "email": "info@deccankitchen.com.au",
+    "email": "contact.deccankitchen@gmail.com",
     "servesCuisine": ["Indian", "Hyderabadi", "Halal"],
     "priceRange": "$$",
     "currenciesAccepted": "AUD",
@@ -166,15 +166,15 @@
     /* Featured food photography */
     .food-gallery {
       max-width: var(--max);
-      margin: -12px auto 78px;
+      margin: 46px auto 52px;
       padding: 0 24px;
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
+      grid-template-columns: 1.15fr 1.15fr 1fr;
+      gap: 14px;
     }
     .food-shot {
       position: relative;
-      min-height: 280px;
+      min-height: 340px;
       overflow: hidden;
       border: 1px solid rgba(201,161,59,.17);
       background: #0d0f0c;
@@ -182,7 +182,7 @@
     .food-shot img {
       width: 100%;
       height: 100%;
-      min-height: 280px;
+      min-height: 340px;
       object-fit: cover;
       display: block;
       transition: transform .6s ease;
@@ -231,6 +231,27 @@
     }
     .intro p { margin: 0; color: var(--muted); max-width: 560px; }
     .gold-rule { width: 58px; height: 1px; background: var(--gold); margin: 23px 0 0; }
+
+
+    .menu-intro {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 18px 24px 10px;
+      text-align: center;
+    }
+    .menu-intro h2 {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.25rem, 5vw, 4rem);
+      line-height: 1.05;
+      font-weight: 600;
+    }
+    .menu-intro p:last-child {
+      max-width: 650px;
+      margin: 14px auto 0;
+      color: var(--muted);
+      font-size: .88rem;
+    }
 
     /* Menu toolbar */
     #menu { scroll-margin-top: 90px; }
@@ -348,7 +369,7 @@
       .hero { min-height: 72vh; padding-top: 55px; }
       .hero-logo { width: min(325px, 84vw); }
       .food-gallery { grid-template-columns: 1fr; margin-bottom: 55px; }
-      .food-shot, .food-shot img { min-height: 240px; }
+      .food-shot, .food-shot img { min-height: 270px; }
       .intro { grid-template-columns: 1fr; gap: 25px; padding-top: 70px; }
       .menu-toolbar { top: 68px; }
       .toolbar-inner { display: block; }
@@ -364,6 +385,8 @@
       .nav-links li:first-child { display: none; }
       .hero h1 { font-size: 3rem; }
       .hero-copy { font-size: .88rem; }
+      .hero-actions { width: 100%; }
+      .hero-actions .btn { flex: 1 1 150px; }
       .menu-section { margin-bottom: 70px; }
       .dish-line h3 { font-size: 1.28rem; }
       .section-heading .ornament { display: none; }
@@ -385,7 +408,6 @@
       </a>
       <ul class="nav-links">
         <li><a href="#home">Home</a></li>
-        <li><a href="#story">Our Story</a></li>
         <li><a href="#menu">Menu</a></li>
         <li><a href="#contact">Visit</a></li>
       </ul>
@@ -399,12 +421,12 @@
         <p class="hero-kicker">Authentic Indian Cuisine</p>
         <h1>Authentic flavour.<br><em>Elevated dining.</em></h1>
         <p class="hero-copy">
-          From aromatic biryanis and starters to rich curries and tandoor-baked naan —
-          discover a menu inspired by the flavours of India and the spirit of the Deccan.
+          Aromatic biryanis, rich curries, sizzling starters and fresh tandoor-baked naan —
+          served with the warmth of Indian hospitality.
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#menu">Explore Menu</a>
-          <a class="btn btn-outline" href="#contact">Visit Us</a>
+          <a class="btn btn-primary" href="#menu">View Full Menu</a>
+          <a class="btn btn-outline" href="https://www.google.com/maps/search/?api=1&query=225B+Queen+Street+Campbelltown+NSW+2560" target="_blank" rel="noopener">Get Directions</a>
         </div>
       </div>
     </section>
@@ -425,17 +447,10 @@
       </figure>
     </section>
 
-    <section class="intro reveal" id="story">
-      <div>
-        <p class="eyebrow">Our Table</p>
-        <h2>A modern expression of<br>Indian hospitality.</h2>
-        <div class="gold-rule"></div>
-      </div>
-      <p>
-        Every dish is prepared to order, slow-cooked and built around warm spice,
-        fresh ingredients and generous flavour. Our dine-in menu brings together Hyderabadi favourites,
-        tandoor classics and comforting Indian curries in a refined, relaxed setting.
-      </p>
+    <section class="menu-intro reveal">
+      <p class="eyebrow">Dine-In Menu</p>
+      <h2>Discover the flavours of Deccan Kitchen</h2>
+      <p>Choose from our starters, curries, biryanis, sharing platters, breads, desserts and drinks.</p>
     </section>
 
     <div id="menu" class="menu-wrap">
@@ -1210,11 +1225,11 @@
             </div>
             <div class="contact-item">
               <span>Email</span>
-              <a href="mailto:info@deccankitchen.com.au">info@deccankitchen.com.au</a>
+              <a href="mailto:contact.deccankitchen@gmail.com">contact.deccankitchen@gmail.com</a>
             </div>
             <div class="contact-item">
               <span>Hours</span>
-              <p>All Days<br>11:00 AM – 01:00 AM</p>
+              <p>11:00 AM – 01:00 AM</p>
             </div>
           </div>
         </div>
@@ -1264,16 +1279,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
